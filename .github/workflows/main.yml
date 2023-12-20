@@ -29,4 +29,8 @@ jobs:
           name: .net-app
           path: /home/compar/actions-runner/_work/k401-digital-ocean-deploy/k401-digital-ocean-deploy/WebUI
 
+      - name: Test publish
+        run: |
+            dotnet publish -c Release -o /home/compar/actions-runner/_work/k401-digital-ocean-deploy/k401-digital-ocean-deploy/deploy
+
    
