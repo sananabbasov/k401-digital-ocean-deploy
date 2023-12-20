@@ -20,7 +20,7 @@ jobs:
 
       - name: Publish WebUI project
         run: |
-          dotnet publish /home/compar/actions-runner/_work/k401-digital-ocean-deploy/k401-digital-ocean-deploy/WebUI/WebUI.csproj -c Release -o /home/compar/deploy/WebUI
+          dotnet publish /home/compar/actions-runner/_work/k401-digital-ocean-deploy/k401-digital-ocean-deploy/WebUI -c Release -o /home/compar/deploy/WebUI
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
