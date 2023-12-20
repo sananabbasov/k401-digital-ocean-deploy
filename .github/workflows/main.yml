@@ -18,14 +18,15 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
 
+      - name: Create deploy directory
+        run: mkdir -p /home/compar/deploy/WebUI
+
       - name: Publish WebUI project
         run: |
-          dotnet publish -c Release -o /home/compar/deploy/WebUI
+          dotnet publish /path/to/WebUI.csproj -c Release -o /home/compar/deploy/WebUI --no-restore --no-build
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: dotnet-app
           path: /home/compar/deploy/WebUI
-
-   
