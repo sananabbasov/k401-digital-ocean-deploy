@@ -18,19 +18,14 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
 
-      # - name: Build and Publish
-      #   run: |
-      #     dotnet publish -c Release -o ./publish
+      - name: Publish WebUI project
+        run: |
+          dotnet publish /home/compar/actions-runner/_work/k401-digital-ocean-deploy/k401-digital-ocean-deploy/WebUI/WebUI.csproj -c Release -o /home/compar/deploy/WebUI
 
-          
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: .net-app
-          path: /home/compar/actions-runner/_work/k401-digital-ocean-deploy/k401-digital-ocean-deploy/WebUI
-
-      - name: Test publish
-        run: |
-            dotnet publish -c Release -o /home/compar/deploy
+          name: dotnet-app
+          path: /home/compar/deploy/WebUI
 
    
