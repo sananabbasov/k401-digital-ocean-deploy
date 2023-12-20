@@ -21,7 +21,7 @@ jobs:
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
-      - name: dotnet publish
+     
 
       - name: Build Project
         run: | 
