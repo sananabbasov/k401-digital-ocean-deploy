@@ -1,32 +1,32 @@
-name: Deploy To DigitalOcean
+name: CI Workflow
+
 on:
   push:
     branches:
-      - main
+      - main # Change this to your desired branch
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: self-hosted # Indicates that this job will run on a self-hosted runner
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup .NET Core SDK
+      - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '7.x'
-          include-prerelease: true
+          dotnet-version: '7.x' # Change this to the desired .NET version
 
-      - name: Create deploy directory
-        run: mkdir -p /home/compar/deploy/WebUI
+      - name: Restore dependencies
+        run: dotnet restore
 
-      - name: Publish WebUI project
-        run: |
-          dotnet publish /path/to/WebUI.csproj -c Release -o /home/compar/deploy/WebUI --no-restore --no-build
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
 
-      - name: Upload artifact for deployment job
+
+      - name: Publish artifact
         uses: actions/upload-artifact@v2
         with:
-          name: dotnet-app
-          path: /home/compar/deploy/WebUI
+          name: built-app
+          path: /home/compar/testdeploy # Replace with the actual path to your published folder
